@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateUsuariosTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuarioId}" for="usuarioId" />
+                    <h:inputText id="usuarioId" value="#{usuariosController.selected.usuarioId}" title="#{bundle.CreateUsuariosTitle_usuarioId}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuarioId}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuarioNombre}" for="usuarioNombre" />
+                    <h:inputText id="usuarioNombre" value="#{usuariosController.selected.usuarioNombre}" title="#{bundle.CreateUsuariosTitle_usuarioNombre}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuarioNombre}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuarioCorreo}" for="usuarioCorreo" />
+                    <h:inputText id="usuarioCorreo" value="#{usuariosController.selected.usuarioCorreo}" title="#{bundle.CreateUsuariosTitle_usuarioCorreo}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuarioCorreo}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuarioLogin}" for="usuarioLogin" />
+                    <h:inputText id="usuarioLogin" value="#{usuariosController.selected.usuarioLogin}" title="#{bundle.CreateUsuariosTitle_usuarioLogin}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuarioLogin}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_usuarioPassword}" for="usuarioPassword" />
+                    <h:inputText id="usuarioPassword" value="#{usuariosController.selected.usuarioPassword}" title="#{bundle.CreateUsuariosTitle_usuarioPassword}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_usuarioPassword}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_perfilId}" for="perfilId" />
+                    <h:inputText id="perfilId" value="#{usuariosController.selected.perfilId}" title="#{bundle.CreateUsuariosTitle_perfilId}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_perfilId}"/>
+                    <h:outputLabel value="#{bundle.CreateUsuariosLabel_activo}" for="activo" />
+                    <h:inputText id="activo" value="#{usuariosController.selected.activo}" title="#{bundle.CreateUsuariosTitle_activo}" required="true" requiredMessage="#{bundle.CreateUsuariosRequiredMessage_activo}"/>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{usuariosController.create}" value="#{bundle.CreateUsuariosSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.CreateUsuariosShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateUsuariosIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>
