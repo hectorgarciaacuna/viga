@@ -20,12 +20,12 @@
                     <h:commandLink action="#{productosController.previous}" value="#{bundle.Previous} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{productosController.next}" value="#{bundle.Next} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasNextPage}"/>&nbsp;
                     <h:dataTable value="#{productosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+                        <!--<h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_productoId}"/>
                             </f:facet>
                             <h:outputText value="#{item.productoId}"/>
-                        </h:column>
+                        </h:column>-->
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_codigo}"/>
