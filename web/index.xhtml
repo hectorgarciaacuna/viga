@@ -2,7 +2,8 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:p="http://primefaces.org/ui" >
+      xmlns:p="http://primefaces.org/ui" 
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
     <h:head>
         <title>Sistema de requisiciones Viga Construcciones S.A. de C.V.</title>
         <!--<h:outputStylesheet name="css/jsfcrud.css-->
@@ -10,12 +11,34 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:tabMenu>
-                <p:menuitem value="Inicio" icon="ui-icon-star">
-                </p:menuitem>
-                <p:menuitem value="Proyectos" outcome="/paginas/proyecto/List" icon="ui-icon-document">
-                </p:menuitem>
-            </p:tabMenu>
+            <p:tabView dynamic="true" cache="true">
+                  <p:tab title="Inicio">
+                    <h:panelGrid>
+
+                    </h:panelGrid>                    
+                </p:tab>
+                <p:tab title="Productos">
+                    <h:panelGrid>
+
+                        <ui:include src="/paginas/productos/List.xhtml" />
+
+                    </h:panelGrid>                    
+                </p:tab>
+                <p:tab title="Proyectos">
+                    <h:panelGrid>
+
+                        <ui:include src="/paginas/proyecto/List.xhtml" />
+
+                    </h:panelGrid>                    
+                </p:tab>
+                <p:tab title="Usuarios">
+                    <h:panelGrid>
+
+                        <ui:include src="/paginas/usuarios/List.xhtml" />
+
+                    </h:panelGrid>                    
+                </p:tab>
+    </p:tabView>
         </h:form>
         
     </h:body>
