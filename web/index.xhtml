@@ -9,13 +9,15 @@
         
     </h:head>
     <h:body>
-        <p:menubar>
-            <p:submenu label="Inicio" icon="ui-icon-document">
-                <p:menuitem value="Proyectos" outcome="/paginas/proyecto/List" />
-                <p:menuitem value="Productos" outcome="/paginas/productos/List" />
-                <p:menuitem value="Usuarios" outcome="/paginas/usuarios/List" />
-            </p:submenu>
-        </p:menubar>
+        <h:form>
+            <p:tabMenu>
+                <p:menuitem value="Inicio" icon="ui-icon-star">
+                </p:menuitem>
+                <p:menuitem value="Proyectos" outcome="/paginas/proyecto/List" icon="ui-icon-document">
+                </p:menuitem>
+            </p:tabMenu>
+        </h:form>
+        
     </h:body>
 
 
