@@ -11,6 +11,9 @@
     </h:head>
     <h:body>
         <h:form>
+            <h:commandLink value="Productos" action="/paginas/productos/List?faces-redirect=true"/>
+        </h:form>
+        <ui:remove><h:form>
             <p:tabView dynamic="true" cache="true">
                   <p:tab title="Inicio">
                     <h:panelGrid>
@@ -40,7 +43,7 @@
                 </p:tab>
     </p:tabView>
         </h:form>
-        
+        </ui:remove>
     </h:body>
 
 
