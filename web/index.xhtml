@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
       xmlns:p="http://primefaces.org/ui" 
-      xmlns:ui="http://xmlns.jcp.org/jsf/facelets">
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:c="http://xmlns.jcp.org/jsp/jstl/core">
     <h:head>
         <title>Sistema de requisiciones Viga Construcciones S.A. de C.V.</title>
         <!--<h:outputStylesheet name="css/jsfcrud.css-->
@@ -11,8 +12,16 @@
     </h:head>
     <h:body>
         <h:form>
+            <p:growl id="message"></p:growl>
             <p:tabView dynamic="true" cache="true">
-                  <p:tab title="Inicio">
+                <p:ajax event="tabChange" listener="#{tabsControlador.onTabChanged}" update="@previous"></p:ajax>
+                <p:ajax event="tabClose" listener="#{tabsControlador.onTabClosed}" update="@form:message"></p:ajax>
+                <p:tab title="Productos" closable="true">
+                    <p:outputLabel value="#{tabsControlador.messageNum1}"></p:outputLabel>
+                </p:tab>
+                <p:tab title="Usuarios" closable="true">
+                </p:tab>
+               <!--<p:tab title="Inicio">
                     <h:panelGrid>
 
                     </h:panelGrid>                    
@@ -37,8 +46,8 @@
                         <ui:include src="/paginas/usuarios/List.xhtml" />
 
                     </h:panelGrid>                    
-                </p:tab>
-    </p:tabView>
+                </p:tab>-->
+            </p:tabView>
         </h:form>
         
     </h:body>
