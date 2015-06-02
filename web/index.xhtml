@@ -14,44 +14,6 @@
         <h:form>
             <h:commandLink value="Productos" action="/paginas/productos/List?faces-redirect=true"/>
         </h:form>
-        <ui:remove><h:form>
-            <p:tabView dynamic="true" cache="true">
-                <p:ajax event="tabChange" listener="#{tabsControlador.onTabChanged}" update="@previous"></p:ajax>
-                <p:ajax event="tabClose" listener="#{tabsControlador.onTabClosed}" update="@form:message"></p:ajax>
-                <p:tab title="Productos" closable="true">
-                    <p:outputLabel value="#{tabsControlador.messageNum1}"></p:outputLabel>
-                </p:tab>
-                <p:tab title="Usuarios" closable="true">
-                </p:tab>
-               <!--<p:tab title="Inicio">
-                    <h:panelGrid>
-
-                    </h:panelGrid>                    
-                </p:tab>
-                <p:tab title="Productos">
-                    <h:panelGrid>
-
-                        <ui:include src="/paginas/productos/List.xhtml" />
-
-                    </h:panelGrid>                    
-                </p:tab>
-                <p:tab title="Proyectos">
-                    <h:panelGrid>
-
-                        <ui:include src="/paginas/proyecto/List.xhtml" />
-
-                    </h:panelGrid>                    
-                </p:tab>
-                <p:tab title="Usuarios">
-                    <h:panelGrid>
-
-                        <ui:include src="/paginas/usuarios/List.xhtml" />
-
-                    </h:panelGrid>                    
-                </p:tab>-->
-            </p:tabView>
-        </h:form>
-        </ui:remove>
     </h:body>
 
 
