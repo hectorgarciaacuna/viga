@@ -12,7 +12,9 @@
     </h:head>
     <h:body>
         <h:form>
-            <p:growl id="message"></p:growl>
+            <h:commandLink value="Productos" action="/paginas/productos/List?faces-redirect=true"/>
+        </h:form>
+        <ui:remove><h:form>
             <p:tabView dynamic="true" cache="true">
                 <p:ajax event="tabChange" listener="#{tabsControlador.onTabChanged}" update="@previous"></p:ajax>
                 <p:ajax event="tabClose" listener="#{tabsControlador.onTabClosed}" update="@form:message"></p:ajax>
@@ -49,7 +51,7 @@
                 </p:tab>-->
             </p:tabView>
         </h:form>
-        
+        </ui:remove>
     </h:body>
 
 

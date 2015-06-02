@@ -13,25 +13,34 @@ a {
     color: #e33b06;
 }
 
+
 table {
     empty-cells: show;
+    font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;font-size:1.1em;
 }
 
+th:first-child {
+    -moz-border-radius: 6px 0 0 0;
+    -webkit-border-radius: 6px 0 0 0;
+    border-radius: 6px 0 0 0;
+    }
+th:last-child {
+    -moz-border-radius: 0 6px 0 0;
+    -webkit-border-radius: 0 6px 0 0;
+    border-radius: 0 6px 0 0;
+}
 form.jsfcrud_list_form th, td th {
+    font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;font-size:1.1em;
+    
     font-size: x-small;
-    color: #4e6a71;
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-right-style: solid;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-right-width: 1px;
-    border-top-color: #b2d5d6;
-    border-bottom-color: #b2d5d6;
-    border-left-color: #90b4bd;
-    border-right-color: #90b4bd;
+    color:#362b36;
+    border:1px solid #dddddd;
+    background:#f2f5f7 url("#{resource['primefaces-cupertino:images/ui-bg_highlight-hard_100_f2f5f7_1x100.png']}") 50% top repeat-x;
+    color:#362b36;
+    border:1px solid #aed0ea;
+    background:#deedf7 url("#{resource['primefaces-cupertino:images/ui-bg_highlight-soft_100_deedf7_1x100.png']}") 50% 50% repeat-x;
+    color:#222222;font-weight:bold;
+    color:#222222;
     letter-spacing: 3px;
     text-align: left;
     padding-top: 6px;
@@ -40,37 +49,46 @@ form.jsfcrud_list_form th, td th {
     padding-right: 6px;
     background-color: #b2d5d6;
 }
+.ui-widget{font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;font-size:1.1em;}.ui-widget .ui-widget{font-size:1em;}.ui-widget input, .ui-widget select, .ui-widget textarea, .ui-widget button{font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;font-size:1em;}.ui-widget-content{border:1px solid #dddddd;background:#f2f5f7 url("#{resource['primefaces-cupertino:images/ui-bg_highlight-hard_100_f2f5f7_1x100.png']}") 50% top repeat-x;color:#362b36;}.ui-widget-content a{color:#362b36;}.ui-widget-header{border:1px solid #aed0ea;background:#deedf7 url("#{resource['primefaces-cupertino:images/ui-bg_highlight-soft_100_deedf7_1x100.png']}") 50% 50% repeat-x;color:#222222;font-weight:bold;}.ui-widget-header a{color:#222222;}
 
 td {
     vertical-align: top;
     padding-bottom: 8px;
     font-size: small;
 }
-
+// Datos de la tabla
 form.jsfcrud_list_form td, td td {
-    border-top-style: solid;
-    border-bottom-style: solid;
-    border-left-style: solid;
-    border-right-style: solid;
-    border-top-width: 1px;
-    border-bottom-width: 1px;
-    border-left-width: 1px;
-    border-right-width: 1px;
-    border-top-color: #b2d5d6;
-    border-bottom-color: #b2d5d6;
-    border-left-color: #b2d5d6;
-    border-right-color: #b2d5d6;
+    font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;font-size:1.1em;
+    -moz-border-radius-topright:6px;
+    -webkit-border-top-right-radius:6px;
+    border-top-right-radius:6px;
+    //border-top-style: solid;
+    //border-bottom-style: solid;
+    //border-left-style: solid;
+    //border-right-style: solid;
+    //border-top-width: 1px;
+    //border-bottom-width: 1px;
+    //border-left-width: 1px;
+    //border-right-width: 1px;
+    //border-top-color: #b2d5d6;
+    //border-bottom-color: #b2d5d6;
+    //border-right-color: #b2d5d6;
+    //border-left-color: #b2d5d6;
     vertical-align: baseline;
     padding-bottom: 0px;
 }
 
 tr.jsfcrud_odd_row {
+    font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;
+    font-size:1.1em;
     background-color: #fefeff;
     color: #4e6a71;
 }
 
 
 tr.jsfcrud_even_row {
+    font-family:Lucida Grande, Lucida Sans, Arial, sans-serif;
+    font-size:1.1em;
     background-color: #eff5fa;
     color: #4e6a71;
 }
