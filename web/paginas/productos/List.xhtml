@@ -11,16 +11,16 @@
             <h:outputText value="#{bundle.ListProductosTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
+            <h:form styleClass="jsfcrud_list_form, tabla">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListProductosEmpty}" rendered="#{productosController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{productosController.items.rowCount > 0}">
-                    <h:outputText value="#{productosController.pagination.pageFirstItem + 1}..#{productosController.pagination.pageLastItem + 1}/#{productosController.pagination.itemsCount}"/>&nbsp;
+                    <h:outputText value="#{productosController.pagination.pageFirstItem + 1}..#{productosController.pagination.pageLastItem + 1}/#{productosController.pagination.itemsCount}" style="font-weight: 600; font-size: 15px; letter-spacing: 2px; font-family: sans-serif; color: #fff; position: relative; top: -27px; padding: 0 14px;"/>&nbsp;
                     <h:commandLink action="#{productosController.previous}" value="#{bundle.Previous} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{productosController.next}" value="#{bundle.Next} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{productosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:commandLink action="#{productosController.next}" value="#{bundle.Next} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasNextPage}" />&nbsp;
+                    <h:dataTable value="#{productosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="odd-row,even-row" rules="all" style="border:none;">
                         <!--<h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_productoId}"/>
@@ -28,7 +28,7 @@
                             <h:outputText value="#{item.productoId}"/>
                         </h:column>-->
                         <h:column>
-                            <f:facet name="header">
+                            <f:facet id="tabla" name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_codigo}"/>
                             </f:facet>
                             <h:outputText value="#{item.codigo}"/>
@@ -55,19 +55,18 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{productosController.prepareView}" value="#{bundle.ListProductosViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{productosController.prepareEdit}" value="#{bundle.ListProductosEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{productosController.destroy}" value="#{bundle.ListProductosDestroyLink}"/>
+                            <p:commandButton action="#{productosController.prepareView}" value="#{bundle.ListProductosViewLink}" icon="ui-icon-search"/>
+                            <p:commandButton action="#{productosController.prepareEdit}" value="#{bundle.ListProductosEditLink}" icon="ui-icon-pencil"/>
+                            <p:commandButton action="#{productosController.destroy}" value="#{bundle.ListProductosDestroyLink}" icon="ui-icon-close"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{productosController.prepareCreate}" value="#{bundle.ListProductosCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListProductosIndexLink}"/>
+                
+       
+                <p:growl id="growl" life="2000" />
+                <p:commandButton action="#{productosController.prepareCreate}" value="#{bundle.ListProductosCreateLink}" icon="ui-icon-document"/>
+                <p:commandButton action="/index" value="#{bundle.ListProductosIndexLink}" icon="ui-icon-arrowreturnthick-1-w"/>
             </h:form>
         </ui:define>
     </ui:composition>

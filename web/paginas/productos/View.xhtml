@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,7 +14,7 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form styleClass="crear">
                 <h:panelGrid columns="2">
                     <h:outputText value="#{bundle.ViewProductosLabel_productoId}"/>
                     <h:outputText value="#{productosController.selected.productoId}" title="#{bundle.ViewProductosTitle_productoId}"/>
@@ -27,17 +28,10 @@
                     <h:outputText value="#{productosController.selected.umIdcompra}" title="#{bundle.ViewProductosTitle_umIdcompra}"/>
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{productosController.destroyAndView}" value="#{bundle.ViewProductosDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewProductosEditLink}"/>
-                <br />
-                <h:commandLink action="#{productosController.prepareCreate}" value="#{bundle.ViewProductosCreateLink}" />
-                <br />
-                <h:commandLink action="#{productosController.prepareList}" value="#{bundle.ViewProductosShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewProductosIndexLink}"/>
+                <p:commandButton action="#{productosController.destroyAndView}" value="#{bundle.ViewProductosDestroyLink}" icon="ui-icon-close"/>
+                <p:commandButton action="Edit" value="#{bundle.ViewProductosEditLink}" icon="ui-icon-search"/>
+                <p:commandButton action="#{productosController.prepareCreate}" value="#{bundle.ViewProductosCreateLink}" icon="ui-icon-document"/>
+                <p:commandButton action="#{productosController.prepareList}" value="#{bundle.ViewProductosShowAllLink}" icon="ui-icon-folder-open"/>
 
             </h:form>
         </ui:define>

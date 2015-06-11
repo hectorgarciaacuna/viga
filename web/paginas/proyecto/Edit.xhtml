@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,7 +14,7 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form styleClass="crear">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditProyectoLabel_proyectoId}" for="proyectoId" />
                     <h:inputText id="proyectoId" value="#{proyectoController.selected.proyectoId}" title="#{bundle.EditProyectoTitle_proyectoId}" required="true" requiredMessage="#{bundle.EditProyectoRequiredMessage_proyectoId}"/>
@@ -44,15 +45,9 @@
                     <h:outputLabel value="#{bundle.EditProyectoLabel_usuarioId}" for="usuarioId" />
                     <h:inputText id="usuarioId" value="#{proyectoController.selected.usuarioId}" title="#{bundle.EditProyectoTitle_usuarioId}" />
                 </h:panelGrid>
-                <h:commandLink action="#{proyectoController.update}" value="#{bundle.EditProyectoSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditProyectoViewLink}"/>
-                <br />
-                <h:commandLink action="#{proyectoController.prepareList}" value="#{bundle.EditProyectoShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditProyectoIndexLink}" />
+                <p:commandButton action="#{proyectoController.update}" value="#{bundle.EditProyectoSaveLink}" icon="ui-icon-disk"/>
+                <p:commandButton action="View" value="#{bundle.EditProyectoViewLink}" icon="ui-icon-search"/>
+                <p:commandButton action="#{proyectoController.prepareList}" value="#{bundle.EditProyectoShowAllLink}" immediate="true" icon="ui-icon-folder-open"/>
             </h:form>
         </ui:define>
     </ui:composition>
