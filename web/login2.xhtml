@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <h:head>
+        <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+        <title>Viga Constructores - Login</title>
+        <h:outputStylesheet library="css" name="login.css"/>
+        <style type="text/css">
+            *{
+                font-family: sans-serif;
+            }
+            body {
+               background: #E7ECEA;
+            }
+        .login-container {
+            width: 320px;
+            padding: 40px;
+            margin: 0 auto;
+            text-align: center;
+            background: #fff;
+            border: 1px solid #d8d8d8;
+            box-shadow: 0 0 15px #b8b8b8;
+            position: relative;
+            top: 50px;
+        }
+
+        .logoviga {
+            margin: 0 auto;
+            width: 250px;
+            height: 157px;
+            background: url("#{resource['css:images/viga-logo.jpg']}");
+            background-repeat:no-repeat;
+            background-size: 100%;
+
+        }
+        
+        .login-container table {
+            margin: 20px auto 0;
+            text-align: left;
+        }
+        
+        .login-container table tr {
+            line-height: 3;
+        }
+        
+        .login-container input {
+            background: #E7ECEA;
+            border: none;
+            padding: 5px 10px;
+            border-radius: 4px;
+        }
+        
+        .login-container button {
+        background:#E7ECEA;
+        font-size: 14px;
+        letter-spacing: 2px;
+        font-weight: 400;
+        }
+
+        </style>
+    </h:head>
+    <h:body>
+        <div class="login-container">
+            <div class="logoviga"></div>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="Usuario" for="Usuario" />
+                    <h:inputText id="Usuario" value="" title="" required="true" requiredMessage=""/>
+                    <h:outputLabel value="Contraseña" for="Contraseña" />
+                    <h:inputText id="Contraseña" value="" title="" required="true" requiredMessage="}"/>
+                </h:panelGrid>
+                <br />
+                <p:commandButton action="/" value="Ingresar" />
+            </h:form>
+        </div>       
+    </h:body>
+</html>
