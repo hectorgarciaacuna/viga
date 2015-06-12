@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,7 +14,7 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form styleClass="crear">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.EditUsuariosLabel_usuarioId}" for="usuarioId" />
                     <h:inputText id="usuarioId" value="#{usuariosController.selected.usuarioId}" title="#{bundle.EditUsuariosTitle_usuarioId}" required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_usuarioId}"/>
@@ -30,15 +31,9 @@
                     <h:outputLabel value="#{bundle.EditUsuariosLabel_activo}" for="activo" />
                     <h:inputText id="activo" value="#{usuariosController.selected.activo}" title="#{bundle.EditUsuariosTitle_activo}" required="true" requiredMessage="#{bundle.EditUsuariosRequiredMessage_activo}"/>
                 </h:panelGrid>
-                <h:commandLink action="#{usuariosController.update}" value="#{bundle.EditUsuariosSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditUsuariosViewLink}"/>
-                <br />
-                <h:commandLink action="#{usuariosController.prepareList}" value="#{bundle.EditUsuariosShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditUsuariosIndexLink}" />
+                <p:commandButton action="#{usuariosController.update}" value="#{bundle.EditUsuariosSaveLink}" icon="ui-icon-disk"/>
+                <p:commandButton action="View" value="#{bundle.EditUsuariosViewLink}" icon="ui-icon-search"/>
+                <p:commandButton action="#{usuariosController.prepareList}" value="#{bundle.EditUsuariosShowAllLink}" immediate="true" icon="ui-icon-folder-open"/>
             </h:form>
         </ui:define>
     </ui:composition>

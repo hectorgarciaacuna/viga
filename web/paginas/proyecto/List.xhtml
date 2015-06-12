@@ -3,23 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
             <h:outputText value="#{bundle.ListProyectoTitle}"></h:outputText>
         </ui:define>
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
+            <h:form styleClass="tabla">
                 <h:panelGroup id="messagePanel" layout="block">
                     <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
                 </h:panelGroup>
                 <h:outputText escape="false" value="#{bundle.ListProyectoEmpty}" rendered="#{proyectoController.items.rowCount == 0}"/>
                 <h:panelGroup rendered="#{proyectoController.items.rowCount > 0}">
-                    <h:outputText value="#{proyectoController.pagination.pageFirstItem + 1}..#{proyectoController.pagination.pageLastItem + 1}/#{proyectoController.pagination.itemsCount}"/>&nbsp;
+                    <h:outputText value="#{proyectoController.pagination.pageFirstItem + 1}..#{proyectoController.pagination.pageLastItem + 1}/#{proyectoController.pagination.itemsCount}" style="font-weight: 600; font-size: 15px; letter-spacing: 2px; font-family: sans-serif; color: #fff; position: relative; top: -27px; padding: 0 14px;"/>&nbsp;
                     <h:commandLink action="#{proyectoController.previous}" value="#{bundle.Previous} #{proyectoController.pagination.pageSize}" rendered="#{proyectoController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{proyectoController.next}" value="#{bundle.Next} #{proyectoController.pagination.pageSize}" rendered="#{proyectoController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{proyectoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                    <h:dataTable value="#{proyectoController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="odd-row,even-row" rules="all">
                         <h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProyectoTitle_proyectoId}"/>
@@ -100,19 +101,15 @@
                             <f:facet name="header">
                                 <h:outputText value="&nbsp;"/>
                             </f:facet>
-                            <h:commandLink action="#{proyectoController.prepareView}" value="#{bundle.ListProyectoViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{proyectoController.prepareEdit}" value="#{bundle.ListProyectoEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{proyectoController.destroy}" value="#{bundle.ListProyectoDestroyLink}"/>
+                            <p:commandButton action="#{proyectoController.prepareView}" value="#{bundle.ListProyectoViewLink}" icon="ui-icon-search"/>
+                            <p:commandButton action="#{proyectoController.prepareEdit}" value="#{bundle.ListProyectoEditLink}" icon="ui-icon-pencil"/>
+                            <p:commandButton action="#{proyectoController.destroy}" value="#{bundle.ListProyectoDestroyLink}" icon="ui-icon-close"/>
                         </h:column>
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                <h:commandLink action="#{proyectoController.prepareCreate}" value="#{bundle.ListProyectoCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListProyectoIndexLink}"/>
+                <p:commandButton action="#{proyectoController.prepareCreate}" value="#{bundle.ListProyectoCreateLink}" icon="ui-icon-clipboard"/>
+                <p:commandButton action="/index" value="#{bundle.ListProyectoIndexLink}" icon="ui-icon-arrowreturnthick-1-w"/>
             </h:form>
         </ui:define>
     </ui:composition>
