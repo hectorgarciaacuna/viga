@@ -34,22 +34,9 @@ public class UsuariosFacadeREST extends AbstractFacade<Usuarios> {
     @PersistenceContext(unitName = "webServerVigaPU")
     private EntityManager em;
     
-    @Resource(name = "conexionDB")
-    private DataSource conexionDB;
 
     public UsuariosFacadeREST() {
         super(Usuarios.class);
-    }
-    
-    private Connection getConexion(){
-        
-        Connection con= null;
-        try{
-            con = conexionDB.getConnection();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-    return con;
     }
 
     @POST
@@ -96,26 +83,8 @@ public class UsuariosFacadeREST extends AbstractFacade<Usuarios> {
     @GET
     @Path("log/{usuarioLogin}/{contrasena}")
     @Produces("application/xml")
-    public String getusuarioLogin(@PathParam("usuarioLogin") String usuarioLogin,@PathParam("contrasena") String contrasena) {
-        
-        Connection c = null;
-        String resultado = "0";
-        try{
-            c = getConexion();
-            Statement s = c.createStatement();
-            ResultSet res = s.executeQuery("SELECT * FROM usuarios WHERE usuarioLogin = '"+usuarioLogin+"' AND usuarioPassword = '"+contrasena+"'");
-            
-            while(res.next()){
-                if(res.isFirst()){
-                    resultado = res.getString("usuarioNombre");
-                }
-            }
-            res.close();
-            s.close();
-        }catch(Exception e){
-            e.printStackTrace();
-        }
-        return "<usuarios><resultado login = \""+resultado+"\" /></usuarios>";
+    public List<Usuarios> getusuarioLogin(@PathParam("usuarioLogin") String usuarioLogin,@PathParam("contrasena") String contrasena) {
+        return super.usuarioLogin(usuarioLogin, contrasena);
     }
 
     @GET
