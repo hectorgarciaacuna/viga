@@ -69,4 +69,12 @@ public abstract class AbstractFacade<T> {
         return consulta.getResultList();
     }
     
+    public List<T> usuarioLogin(String d,String p){
+        String sql = "SELECT u FROM Usuarios u WHERE u.usuarioLogin = :user AND u.usuarioPassword = :pass";
+        consulta = getEntityManager().createQuery(sql);
+        consulta.setParameter("user", d);
+        consulta.setParameter("pass", p);
+        return consulta.getResultList();
+    }
+    
 }
