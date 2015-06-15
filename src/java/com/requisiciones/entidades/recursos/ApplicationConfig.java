@@ -31,6 +31,8 @@ public class ApplicationConfig extends Application {
     private void addRestResourceClasses(Set<Class<?>> resources) {
         resources.add(com.requisiciones.entidades.recursos.ProductosFacadeREST.class);
         resources.add(com.requisiciones.entidades.recursos.ProyectoFacadeREST.class);
+        resources.add(com.requisiciones.entidades.recursos.RequisicionesFacadeREST.class);
+        resources.add(com.requisiciones.entidades.recursos.RequisicionesMovFacadeREST.class);
         resources.add(com.requisiciones.entidades.recursos.UsuariosFacadeREST.class);
     }
     
