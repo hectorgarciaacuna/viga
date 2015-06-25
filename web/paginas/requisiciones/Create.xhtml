@@ -3,7 +3,8 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
         <ui:define name="title">
@@ -13,7 +14,7 @@
             <h:panelGroup id="messagePanel" layout="block">
                 <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
             </h:panelGroup>
-            <h:form>
+            <h:form styleClass="crear">
                 <h:panelGrid columns="2">
                     <h:outputLabel value="#{bundle.CreateRequisicionesLabel_transaccionId}" for="transaccionId" />
                     <h:inputText id="transaccionId" value="#{requisicionesController.selected.transaccionId}" title="#{bundle.CreateRequisicionesTitle_transaccionId}" required="true" requiredMessage="#{bundle.CreateRequisicionesRequiredMessage_transaccionId}"/>
@@ -31,13 +32,9 @@
                     <h:inputText id="comentario" value="#{requisicionesController.selected.comentario}" title="#{bundle.CreateRequisicionesTitle_comentario}" />
                 </h:panelGrid>
                 <br />
-                <h:commandLink action="#{requisicionesController.create}" value="#{bundle.CreateRequisicionesSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{requisicionesController.prepareList}" value="#{bundle.CreateRequisicionesShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateRequisicionesIndexLink}"/>
+                <p:commandButton action="#{requisicionesController.create}" value="#{bundle.CreateRequisicionesSaveLink}" />
+                <p:commandButton action="#{requisicionesController.prepareList}" value="#{bundle.CreateRequisicionesShowAllLink}" immediate="true"/>
+                <p:commandButton action="/index" value="#{bundle.CreateRequisicionesIndexLink}"/>
             </h:form>
         </ui:define>
     </ui:composition>
