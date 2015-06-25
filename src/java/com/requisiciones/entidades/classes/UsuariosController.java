@@ -17,6 +17,7 @@ import javax.faces.convert.FacesConverter;
 import javax.faces.model.DataModel;
 import javax.faces.model.ListDataModel;
 import javax.faces.model.SelectItem;
+import javax.persistence.TypedQuery;
 
 @ManagedBean(name = "usuariosController")
 @SessionScoped
@@ -24,6 +25,7 @@ public class UsuariosController implements Serializable {
 
     private Usuarios current;
     private DataModel items = null;
+    private String message;
     @EJB
     private com.requisiciones.entidades.controlador.UsuariosFacade ejbFacade;
     private PaginationHelper pagination;
@@ -38,6 +40,23 @@ public class UsuariosController implements Serializable {
             selectedItemIndex = -1;
         }
         return current;
+    }
+    
+    public void validateLogin() {
+        TypedQuery<Usuarios> query = getFacade().getEntityManager().
+                createNamedQuery("Usuarios.findByUsuarioLogin", Usuarios.class);
+        query.setParameter("usuarioLogin", current.getUsuarioNombre());
+        query.setParameter("usuarioPassword", current.getUsuarioPassword());
+        try {
+            Usuarios login = query.getSingleResult();
+            message = "Valid User";
+        } catch (Exception e) {
+            message = "Invalid Login Credentials";
+        }
+    }
+    
+    public String getMessage() {
+        return message;
     }
 
     private UsuariosFacade getFacade() {
