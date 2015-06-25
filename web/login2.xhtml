@@ -38,6 +38,10 @@
             background-size: 100%;
 
         }
+        #blockUIContent td {  
+            border: none !important;  
+            padding: 0 !important;  
+        }  
         
         .login-container table {
             margin: 20px auto 0;
@@ -68,15 +72,23 @@
         <div class="login-container">
             <div class="logoviga"></div>
             <h:form>
-                <h:panelGrid columns="2">
+                <h:panelGrid columns="2" id="panelLogin">
                     <h:outputLabel value="Usuario" for="Usuario" />
-                    <h:inputText id="Usuario" value="" title="" required="true" requiredMessage=""/>
+                    <h:inputText id="Usuario" value="#{usuariosController.selected.usuarioNombre}" title="" required="true" requiredMessage=""/>
                     <h:outputLabel value="Contraseña" for="Contraseña" />
-                    <h:inputText id="Contraseña" value="" title="" required="true" requiredMessage="}"/>
+                    <h:inputSecret id="pass" value="#{usuariosController.selected.usuarioPassword}" title="" required="true" requiredMessage=""/>
+                    <br />
+                    <p:commandButton action="#{usuariosController.validateLogin()}" value="Ingresar" process="panelLogin" update="panelLogin" onstart="PF('blockUIWidget1').block()" oncomplete="PF('blockUIWidget1').unblock()">
+                        <ui:remove><f:ajax execute="@form" render="displayResponse" /></ui:remove>
+                    </p:commandButton>
                 </h:panelGrid>
-                <br />
-                <p:commandButton action="/" value="Ingresar" />
+                <ui:remove><h:outputLabel id="displayResponse" value="#{usuariosController.message}" /></ui:remove>  
             </h:form>
+            <p:blockUI widgetVar="blockUIWidget1">  
+                <h:panelGrid columns="2">   
+                    <h:outputText value="Ingresando..." style="white-space: nowrap;"/>  
+                </h:panelGrid>  
+            </p:blockUI>
         </div>       
     </h:body>
 </html>
