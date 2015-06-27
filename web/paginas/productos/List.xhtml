@@ -21,12 +21,12 @@
                     <h:commandLink action="#{productosController.previous}" value="#{bundle.Previous} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasPreviousPage}"/>&nbsp;
                     <h:commandLink action="#{productosController.next}" value="#{bundle.Next} #{productosController.pagination.pageSize}" rendered="#{productosController.pagination.hasNextPage}" />&nbsp;
                     <h:dataTable value="#{productosController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="odd-row,even-row" rules="all" style="border:none;">
-                        <!--<h:column>
+                        <ui:remove><h:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_productoId}"/>
                             </f:facet>
                             <h:outputText value="#{item.productoId}"/>
-                        </h:column>-->
+                            </h:column></ui:remove>
                         <h:column>
                             <f:facet id="tabla" name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_codigo}"/>
@@ -62,9 +62,6 @@
                     </h:dataTable>
                 </h:panelGroup>
                 <br />
-                
-       
-                <p:growl id="growl" life="2000" />
                 <p:commandButton action="#{productosController.prepareCreate}" value="#{bundle.ListProductosCreateLink}" icon="ui-icon-document"/>
                 <p:commandButton action="/index" value="#{bundle.ListProductosIndexLink}" icon="ui-icon-arrowreturnthick-1-w"/>
             </h:form>
