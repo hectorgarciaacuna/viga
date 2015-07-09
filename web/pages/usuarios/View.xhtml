@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="UsuariosViewDlg" widgetVar="UsuariosViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewUsuariosTitle}">
+            <h:form id="UsuariosViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{usuariosController.selected != null}">
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioId}"/>
+                        <h:outputText value="#{usuariosController.selected.usuarioId}" title="#{bundle.ViewUsuariosTitle_usuarioId}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioNombre}"/>
+                        <h:outputText value="#{usuariosController.selected.usuarioNombre}" title="#{bundle.ViewUsuariosTitle_usuarioNombre}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioCorreo}"/>
+                        <h:outputText value="#{usuariosController.selected.usuarioCorreo}" title="#{bundle.ViewUsuariosTitle_usuarioCorreo}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioLogin}"/>
+                        <h:outputText value="#{usuariosController.selected.usuarioLogin}" title="#{bundle.ViewUsuariosTitle_usuarioLogin}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioPassword}"/>
+                        <h:outputText value="#{usuariosController.selected.usuarioPassword}" title="#{bundle.ViewUsuariosTitle_usuarioPassword}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_perfilId}"/>
+                        <h:outputText value="#{usuariosController.selected.perfilId}" title="#{bundle.ViewUsuariosTitle_perfilId}"/>
+                        <h:outputText value="#{bundle.ViewUsuariosLabel_activo}"/>
+                        <p:selectBooleanCheckbox value="#{usuariosController.selected.activo}" disabled="true"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="UsuariosViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

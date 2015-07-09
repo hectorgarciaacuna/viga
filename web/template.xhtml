@@ -9,21 +9,20 @@
     <h:head>
         <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
         <title><ui:insert name="title">Default Title</ui:insert></title>
+        <h:outputScript library="js" name="jsfcrud.js" />
         <h:outputStylesheet library="css" name="theme.css"/>
     </h:head>
 
     <h:body>
         <h:form>
             <p:menubar>
-                <p:menuitem value="Requisiciones" action="/paginas/requisiciones/List?faces-redirect=true" />
-                <p:menuitem value="Productos" action="/paginas/productos/List?faces-redirect=true" />
-                <p:menuitem value="Proyectos" action="/paginas/proyecto/List?faces-redirect=true" />
-                <p:menuitem value="Usuarios" action="/paginas/usuarios/List?faces-redirect=true" />
+                <p:menuitem value="Productos" action="/pages/productos/List?faces-redirect=true" />
+                <p:menuitem value="Requisiciones" action="/pages/requisiciones/List?faces-redirect=true" />
+                <p:menuitem value="Proyectos" action="/pages/proyecto/List?faces-redirect=true" />
+                <p:menuitem value="Usuarios" action="/pages/usuarios/List?faces-redirect=true" />
             </p:menubar>
         </h:form>
-        <h1 class="titulos">
             <ui:insert name="title"></ui:insert>
-        </h1>
         <p>
             <ui:insert name="body"></ui:insert>
         </p>

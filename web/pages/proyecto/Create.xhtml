@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProyectoCreateDlg" widgetVar="ProyectoCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateProyectoTitle}">
+            <h:form id="ProyectoCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proyectoController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_proyectoId}" for="proyectoId" />
+                        <p:inputText id="proyectoId" value="#{proyectoController.selected.proyectoId}" title="#{bundle.CreateProyectoTitle_proyectoId}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_proyectoId}"/>
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_codigoPostal}" for="codigoPostal" />
+                        <p:inputText id="codigoPostal" value="#{proyectoController.selected.codigoPostal}" title="#{bundle.CreateProyectoTitle_codigoPostal}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_codigoProyecto}" for="codigoProyecto" />
+                        <p:inputText id="codigoProyecto" value="#{proyectoController.selected.codigoProyecto}" title="#{bundle.CreateProyectoTitle_codigoProyecto}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_nombre}" for="nombre" />
+                        <p:inputText id="nombre" value="#{proyectoController.selected.nombre}" title="#{bundle.CreateProyectoTitle_nombre}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_direccion}" for="direccion" />
+                        <p:inputText id="direccion" value="#{proyectoController.selected.direccion}" title="#{bundle.CreateProyectoTitle_direccion}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_colonia}" for="colonia" />
+                        <p:inputText id="colonia" value="#{proyectoController.selected.colonia}" title="#{bundle.CreateProyectoTitle_colonia}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_delegacion}" for="delegacion" />
+                        <p:inputText id="delegacion" value="#{proyectoController.selected.delegacion}" title="#{bundle.CreateProyectoTitle_delegacion}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_estado}" for="estado" />
+                        <p:inputText id="estado" value="#{proyectoController.selected.estado}" title="#{bundle.CreateProyectoTitle_estado}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_tipoProyecto}" for="tipoProyecto" />
+                        <p:inputText id="tipoProyecto" value="#{proyectoController.selected.tipoProyecto}" title="#{bundle.CreateProyectoTitle_tipoProyecto}" />
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_fechaInicio}" for="fechaInicio" />
+                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy HH:mm:ss" value="#{proyectoController.selected.fechaInicio}" title="#{bundle.EditProyectoTitle_fechaInicio}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_fechaFin}" for="fechaFin" />
+                        <p:calendar id="fechaFin" pattern="MM/dd/yyyy HH:mm:ss" value="#{proyectoController.selected.fechaFin}" title="#{bundle.EditProyectoTitle_fechaFin}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.CreateProyectoLabel_usuarioId}" for="usuarioId" />
+                        <p:inputText id="usuarioId" value="#{proyectoController.selected.usuarioId}" title="#{bundle.CreateProyectoTitle_usuarioId}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{proyectoController.create}" value="#{bundle.Save}" update="display,:ProyectoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProyectoCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="ProyectoCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

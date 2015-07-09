@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="ProyectoViewDlg" widgetVar="ProyectoViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewProyectoTitle}">
+            <h:form id="ProyectoViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{proyectoController.selected != null}">
+                        <h:outputText value="#{bundle.ViewProyectoLabel_proyectoId}"/>
+                        <h:outputText value="#{proyectoController.selected.proyectoId}" title="#{bundle.ViewProyectoTitle_proyectoId}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_codigoPostal}"/>
+                        <h:outputText value="#{proyectoController.selected.codigoPostal}" title="#{bundle.ViewProyectoTitle_codigoPostal}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_codigoProyecto}"/>
+                        <h:outputText value="#{proyectoController.selected.codigoProyecto}" title="#{bundle.ViewProyectoTitle_codigoProyecto}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_nombre}"/>
+                        <h:outputText value="#{proyectoController.selected.nombre}" title="#{bundle.ViewProyectoTitle_nombre}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_direccion}"/>
+                        <h:outputText value="#{proyectoController.selected.direccion}" title="#{bundle.ViewProyectoTitle_direccion}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_colonia}"/>
+                        <h:outputText value="#{proyectoController.selected.colonia}" title="#{bundle.ViewProyectoTitle_colonia}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_delegacion}"/>
+                        <h:outputText value="#{proyectoController.selected.delegacion}" title="#{bundle.ViewProyectoTitle_delegacion}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_estado}"/>
+                        <h:outputText value="#{proyectoController.selected.estado}" title="#{bundle.ViewProyectoTitle_estado}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_tipoProyecto}"/>
+                        <h:outputText value="#{proyectoController.selected.tipoProyecto}" title="#{bundle.ViewProyectoTitle_tipoProyecto}"/>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_fechaInicio}"/>
+                        <h:outputText value="#{proyectoController.selected.fechaInicio}" title="#{bundle.ViewProyectoTitle_fechaInicio}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_fechaFin}"/>
+                        <h:outputText value="#{proyectoController.selected.fechaFin}" title="#{bundle.ViewProyectoTitle_fechaFin}">
+                            <f:convertDateTime pattern="MM/dd/yyyy HH:mm:ss" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewProyectoLabel_usuarioId}"/>
+                        <h:outputText value="#{proyectoController.selected.usuarioId}" title="#{bundle.ViewProyectoTitle_usuarioId}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="ProyectoViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

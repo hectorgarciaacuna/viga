@@ -18,6 +18,8 @@ import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
 import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import javax.ws.rs.core.MultivaluedMap;
 
 /**
  *
@@ -28,6 +30,7 @@ import javax.ws.rs.Produces;
 public class RequisicionesMovFacadeREST extends AbstractFacade<RequisicionesMov> {
     @PersistenceContext(unitName = "webServerVigaPU")
     private EntityManager em;
+    public RequisicionesMov reqm;
 
     public RequisicionesMovFacadeREST() {
         super(RequisicionesMov.class);
@@ -79,6 +82,26 @@ public class RequisicionesMovFacadeREST extends AbstractFacade<RequisicionesMov>
     @Produces("text/plain")
     public String countREST() {
         return String.valueOf(super.count());
+    }
+    
+    @POST
+    @Consumes(MediaType.APPLICATION_FORM_URLENCODED)
+    @Produces(MediaType.APPLICATION_JSON)
+    public RequisicionesMov crearDetalleRequisicion(MultivaluedMap<String,String> params){
+        reqm = new RequisicionesMov();
+        String transaccionId = params.getFirst("transaccionId");
+        String productoId = params.getFirst("productoId");
+        String umId = params.getFirst("umId");
+        String cantidad = params.getFirst("cantidad");
+        
+        reqm.setTransaccionId(Integer.valueOf(transaccionId));
+        reqm.setProductoId(Integer.valueOf(productoId));
+        reqm.setUmId(Integer.valueOf(umId));
+        reqm.setCantidad(Float.valueOf(cantidad));
+        create(reqm);
+            
+        return reqm;
+        
     }
 
     @Override
