@@ -7,7 +7,9 @@ package com.requisiciones.entidades;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -15,6 +17,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -73,6 +76,22 @@ public class Requisiciones implements Serializable {
     @Column(name = "comentario")
     @XmlAttribute(required=true)
     private String comentario;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "entidadId")
+    @XmlAttribute(required=true)
+    private int entidadId;
+    
+    @OneToMany(cascade = CascadeType.ALL, mappedBy = "requisicion")
+    private List<RequisicionesMov> detalle;
+
+    public List<RequisicionesMov> getDetalle() {
+        return detalle;
+    }
+
+    public void setDetalle(List<RequisicionesMov> detalle) {
+        this.detalle = detalle;
+    }
 
     public Requisiciones() {
     }
@@ -134,6 +153,14 @@ public class Requisiciones implements Serializable {
 
     public void setComentario(String comentario) {
         this.comentario = comentario;
+    }
+
+    public int getEntidadId() {
+        return entidadId;
+    }
+
+    public void setEntidadId(int entidadId) {
+        this.entidadId = entidadId;
     }
 
     @Override

@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequisicionesMovViewDlg" widgetVar="RequisicionesMovViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{requisicionesMovBundle.ViewRequisicionesMovTitle}">
+            <h:form id="RequisicionesMovViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{requisicionesMovController.selected != null}">
+                        <h:outputText value="#{requisicionesMovBundle.ViewRequisicionesMovLabel_transaccionId}"/>
+                        <h:outputText value="#{requisicionesMovController.selected.transaccionId}" title="#{requisicionesMovBundle.ViewRequisicionesMovTitle_transaccionId}"/>
+                        <h:outputText value="#{requisicionesMovBundle.ViewRequisicionesMovLabel_productoId}"/>
+                        <h:outputText value="#{requisicionesMovController.selected.productoId}" title="#{requisicionesMovBundle.ViewRequisicionesMovTitle_productoId}"/>
+                        <h:outputText value="#{requisicionesMovBundle.ViewRequisicionesMovLabel_umId}"/>
+                        <h:outputText value="#{requisicionesMovController.selected.umId}" title="#{requisicionesMovBundle.ViewRequisicionesMovTitle_umId}"/>
+                        <h:outputText value="#{requisicionesMovBundle.ViewRequisicionesMovLabel_cantidad}"/>
+                        <h:outputText value="#{requisicionesMovController.selected.cantidad}" title="#{requisicionesMovBundle.ViewRequisicionesMovTitle_cantidad}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{requisicionesMovBundle.Close}" onclick="RequisicionesMovViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

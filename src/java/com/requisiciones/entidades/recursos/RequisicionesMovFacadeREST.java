@@ -93,11 +93,16 @@ public class RequisicionesMovFacadeREST extends AbstractFacade<RequisicionesMov>
         String productoId = params.getFirst("productoId");
         String umId = params.getFirst("umId");
         String cantidad = params.getFirst("cantidad");
+        String entidadId = params.getFirst("entidadId");
+        String entidadNombre = params.getFirst("entidadNombre");
         
         reqm.setTransaccionId(Integer.valueOf(transaccionId));
         reqm.setProductoId(Integer.valueOf(productoId));
         reqm.setUmId(Integer.valueOf(umId));
         reqm.setCantidad(Float.valueOf(cantidad));
+        reqm.setEntidadId(Integer.valueOf(entidadId));
+        reqm.setEntidadNombre(String.valueOf(entidadNombre));
+
         create(reqm);
             
         return reqm;

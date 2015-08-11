@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="RequisicionesMovCreateDlg" widgetVar="RequisicionesMovCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{requisicionesMovBundle.CreateRequisicionesMovTitle}">
+            <h:form id="RequisicionesMovCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{requisicionesMovController.selected != null}">
+                        <p:outputLabel value="#{requisicionesMovBundle.CreateRequisicionesMovLabel_transaccionId}" for="transaccionId" />
+                        <p:inputText id="transaccionId" value="#{requisicionesMovController.selected.transaccionId}" title="#{requisicionesMovBundle.CreateRequisicionesMovTitle_transaccionId}" required="true" requiredMessage="#{requisicionesMovBundle.CreateRequisicionesMovRequiredMessage_transaccionId}"/>
+                        <p:outputLabel value="#{requisicionesMovBundle.CreateRequisicionesMovLabel_productoId}" for="productoId" />
+                        <p:inputText id="productoId" value="#{requisicionesMovController.selected.productoId}" title="#{requisicionesMovBundle.CreateRequisicionesMovTitle_productoId}" required="true" requiredMessage="#{requisicionesMovBundle.CreateRequisicionesMovRequiredMessage_productoId}"/>
+                        <p:outputLabel value="#{requisicionesMovBundle.CreateRequisicionesMovLabel_umId}" for="umId" />
+                        <p:inputText id="umId" value="#{requisicionesMovController.selected.umId}" title="#{requisicionesMovBundle.CreateRequisicionesMovTitle_umId}" required="true" requiredMessage="#{requisicionesMovBundle.CreateRequisicionesMovRequiredMessage_umId}"/>
+                        <p:outputLabel value="#{requisicionesMovBundle.CreateRequisicionesMovLabel_cantidad}" for="cantidad" />
+                        <p:inputText id="cantidad" value="#{requisicionesMovController.selected.cantidad}" title="#{requisicionesMovBundle.CreateRequisicionesMovTitle_cantidad}" required="true" requiredMessage="#{requisicionesMovBundle.CreateRequisicionesMovRequiredMessage_cantidad}"/>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{requisicionesMovController.create}" value="#{requisicionesMovBundle.Save}" update="display,:RequisicionesMovListForm:datalist,:growl" oncomplete="handleSubmit(args,'RequisicionesMovCreateDialog');"/>
+                    <p:commandButton value="#{requisicionesMovBundle.Cancel}" onclick="RequisicionesMovCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

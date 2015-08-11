@@ -5,6 +5,8 @@
  */
 package session;
 
+import com.requisiciones.entidades.Requisiciones;
+import com.requisiciones.entidades.RequisicionesMov;
 import java.util.List;
 import javax.persistence.EntityManager;
 
@@ -14,6 +16,8 @@ import javax.persistence.EntityManager;
  */
 public abstract class AbstractFacade<T> {
     private Class<T> entityClass;
+    javax.persistence.criteria.CriteriaQuery con;
+    javax.persistence.Query consulta;
 
     public AbstractFacade(Class<T> entityClass) {
         this.entityClass = entityClass;
@@ -58,6 +62,24 @@ public abstract class AbstractFacade<T> {
         cq.select(getEntityManager().getCriteriaBuilder().count(rt));
         javax.persistence.Query q = getEntityManager().createQuery(cq);
         return ((Long) q.getSingleResult()).intValue();
+    }
+    
+    public List<T> findByTransaccionId(String transaccionId){
+        //System.out.println("transaccionId: "+transaccionId);
+        String sql = "SELECT r FROM RequisicionesMov r WHERE r.transaccionId = :transaccionId";
+        consulta = getEntityManager().createQuery(sql);
+        consulta.setParameter("transaccionId", Integer.valueOf(transaccionId));
+        return consulta.getResultList();
+    }
+    
+    public List<T> getProveedores(){
+        String sql = "SELECT p FROM entidades p";
+        consulta = getEntityManager().createQuery(sql);
+        return consulta.getResultList();
+    }
+    
+    public void modificar(String rm){
+        System.out.println("VALORES: "+rm);
     }
     
 }

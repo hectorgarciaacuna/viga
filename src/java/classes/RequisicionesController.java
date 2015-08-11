@@ -3,9 +3,13 @@ package classes;
 import com.requisiciones.entidades.Requisiciones;
 import classes.util.JsfUtil;
 import classes.util.JsfUtil.PersistAction;
+import classes.util.comboboxEntidades;
+import com.requisiciones.entidades.RequisicionesMov;
+import com.requisiciones.entidades.entidades;
 import session.RequisicionesFacade;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.ResourceBundle;
 import java.util.logging.Level;
@@ -18,6 +22,9 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
+import javax.faces.model.SelectItem;
+import session.RequisicionesMovFacade;
+import session.comboboxEntidadesFacade;
 
 @ManagedBean(name = "requisicionesController")
 @SessionScoped
@@ -25,8 +32,19 @@ public class RequisicionesController implements Serializable {
 
     @EJB
     private session.RequisicionesFacade ejbFacade;
+    @EJB
+    private session.RequisicionesMovFacade ejbFacadeMov;
+    @EJB
+    private session.comboboxEntidadesFacade ejbFacadeEntidades;
+    
     private List<Requisiciones> items = null;
+    public List<RequisicionesMov> itemsMov = null;
+    public List<entidades> entidades = null;
+    private RequisicionesMov selectedMov;
     private Requisiciones selected;
+    private entidades entidad;
+    public SelectItem[] selectItems;
+    parametros p = new parametros();
 
     public RequisicionesController() {
     }
@@ -36,7 +54,25 @@ public class RequisicionesController implements Serializable {
     }
 
     public void setSelected(Requisiciones selected) {
+        p.setSeleccion(selected.getTransaccionId());
+        //selectItems = getSelectItems();s si
         this.selected = selected;
+    }
+    
+    public entidades getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(entidades entidad) {
+        this.entidad = entidad;
+    }
+    
+    public List<entidades> getEntidades() {
+        return entidades;
+    }
+
+    public void setEntidades(List<entidades> entidades) {
+        this.entidades = entidades;
     }
 
     protected void setEmbeddableKeys() {
@@ -47,6 +83,14 @@ public class RequisicionesController implements Serializable {
 
     private RequisicionesFacade getFacade() {
         return ejbFacade;
+    }
+    
+    private RequisicionesMovFacade getFacadeMov(){
+        return ejbFacadeMov;
+    }
+    
+    private comboboxEntidadesFacade getFacadeEntidades(){
+        return ejbFacadeEntidades;
     }
 
     public Requisiciones prepareCreate() {
@@ -63,7 +107,19 @@ public class RequisicionesController implements Serializable {
     }
 
     public void update() {
+        selected.setEntidadId(p.getEntidadId());
         persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("RequisicionesUpdated"));
+        for(int i = 0; i < itemsMov.size(); i++){
+            selectedMov = new RequisicionesMov(itemsMov.get(i).getIdr()
+                                                ,itemsMov.get(i).getTransaccionId()
+                                                ,itemsMov.get(i).getProductoId()
+                                                ,itemsMov.get(i).getUmId()
+                                                ,itemsMov.get(i).getCantidad()
+                                                ,itemsMov.get(i).getEntidadId());
+            getFacadeMov().edit(selectedMov);
+            //System.out.println("COMBO: "+entidades.get(i).getEntidadId());
+        }
+        //System.out.println("COMBO: "+p.getEntidadId());
     }
 
     public void destroy() {
@@ -80,6 +136,29 @@ public class RequisicionesController implements Serializable {
         }
         return items;
     }
+    
+    
+    public List<RequisicionesMov> getItemsMov(){
+        if (itemsMov == null) {
+            //items = getFacade().findAll();
+            
+            itemsMov = getFacadeMov().findByTransaccionId(String.valueOf(p.getSeleccion()));
+        }else{
+            itemsMov = getFacadeMov().findByTransaccionId(String.valueOf(p.getSeleccion()));
+        }
+        return itemsMov;
+    }
+    
+    public List<entidades> getItemsEntidades(){
+        if (entidades == null) {
+            //items = getFacade().findAll();
+            
+            entidades = getFacadeEntidades().getProveedores();
+        }else{
+            entidades = getFacadeEntidades().getProveedores();
+        }
+        return entidades;
+    }
 
     private void persist(PersistAction persistAction, String successMessage) {
         if (selected != null) {
@@ -87,6 +166,7 @@ public class RequisicionesController implements Serializable {
             try {
                 if (persistAction != PersistAction.DELETE) {
                     getFacade().edit(selected);
+                    //getFacade().modificar(selected, p.getMovimiento().get(0).toString());
                 } else {
                     getFacade().remove(selected);
                 }

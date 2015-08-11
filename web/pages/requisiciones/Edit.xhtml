@@ -11,11 +11,9 @@
         <p:dialog id="RequisicionesEditDlg" widgetVar="RequisicionesEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditRequisicionesTitle}">
             <h:form id="RequisicionesEditForm">
                 <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{requisicionesController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditRequisicionesLabel_transaccionId}" for="transaccionId" />
-                        <p:inputText id="transaccionId" value="#{requisicionesController.selected.transaccionId}" title="#{bundle.EditRequisicionesTitle_transaccionId}" required="true" requiredMessage="#{bundle.EditRequisicionesRequiredMessage_transaccionId}"/>
+                    <p:panelGrid columns="4" rendered="#{requisicionesController.selected != null}">                        
                         <p:outputLabel value="#{bundle.EditRequisicionesLabel_folio}" for="folio" />
-                        <p:inputText id="folio" value="#{requisicionesController.selected.folio}" title="#{bundle.EditRequisicionesTitle_folio}" required="true" requiredMessage="#{bundle.EditRequisicionesRequiredMessage_folio}"/>
+                        <p:inputText disabled="true" id="folio" value="#{requisicionesController.selected.folio}" title="#{bundle.EditRequisicionesTitle_folio}" required="true" requiredMessage="#{bundle.EditRequisicionesRequiredMessage_folio}"/>
                         <p:outputLabel value="#{bundle.EditRequisicionesLabel_fecha}" for="fecha" />
                         <p:calendar id="fecha" pattern="MM/dd/yyyy HH:mm:ss" value="#{requisicionesController.selected.fecha}" title="#{bundle.EditRequisicionesTitle_fecha}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditRequisicionesLabel_proyectoId}" for="proyectoId" />
@@ -24,8 +22,54 @@
                         <p:inputText id="usuarioId" value="#{requisicionesController.selected.usuarioId}" title="#{bundle.EditRequisicionesTitle_usuarioId}" required="true" requiredMessage="#{bundle.EditRequisicionesRequiredMessage_usuarioId}"/>
                         <p:outputLabel value="#{bundle.EditRequisicionesLabel_comentario}" for="comentario" />
                         <p:inputText id="comentario" value="#{requisicionesController.selected.comentario}" title="#{bundle.EditRequisicionesTitle_comentario}" />
+                        <p:inputText type="hidden" id="transaccionId" value="#{requisicionesController.selected.transaccionId}" title="#{bundle.EditRequisicionesTitle_transaccionId}"/>
+                        <p:selectOneMenu id="entidadId" value="#{selectItemsBean.proveedor}">
+                            <f:selectItems value="#{selectItemsBean.proveedores}" />
+                        </p:selectOneMenu>
                     </p:panelGrid>
-                    <p:commandButton actionListener="#{requisicionesController.update}" value="#{bundle.Save}" update="display,:RequisicionesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RequisicionesEditDialog');"/>
+                    <p:panel header="#{bundle.ListRequisicionesTitleMov}">
+                        <p:dataTable id="detalleRequisicionesMov" value="#{requisicionesController.itemsMov}" var="item" rowKey="#{item.transaccionId}">
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListRequisicionesMovTitle_transaccionId}"/>
+                                </f:facet>
+                                <h:outputText value="#{item.transaccionId}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListRequisicionesMovTitle_productoId}"/>
+                                </f:facet>
+                                <p:inputText id="productoId" value="#{item.productoId}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListRequisicionesMovTitle_umId}"/>
+                                </f:facet>
+                                <p:inputText id="umId" value="#{item.umId}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListRequisicionesMovTitle_cantidad}"/>
+                                </f:facet>
+                                <p:inputText id="cantidad" value="#{item.cantidad}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="#{bundle.ListRequisicionesMovTitle_entidadId}"/>
+                                </f:facet>
+                                <p:inputText id="entidadNombre" value="#{item.entidadNombre}"/>
+                                <ui:remove><p:selectOneMenu id="advanced" value="#{requisicionesController.entidad}" var="t" filter="true" filterMatchMode="startsWith" 
+                                            effect="fade" panelStyle="width:180px" converter="comboboxConverter">
+                                    <f:selectItems value="#{requisicionesController.entidades}" var="proveedor" itemLabel="#{proveedor.nombre}" itemValue="#{proveedor}" />
+                                    <p:ajax event="valueChange" />
+                                    <p:column>
+                                         <h:outputText value="#{t.nombre}" />
+                                    </p:column>
+                                    </p:selectOneMenu></ui:remove>
+                                </p:column>
+                            </p:dataTable>
+                    </p:panel>
+                    <p:commandButton actionListener="#{requisicionesController.update}" value="#{bundle.Save}" update="display,:RequisicionesListForm:datalist,:growl" oncomplete="handleSubmit(args, 'RequisicionesEditDialog');PF('dlg').show();"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="RequisicionesEditDialog.hide()"/>
                 </h:panelGroup>
             </h:form>

@@ -6,14 +6,20 @@
 package com.requisiciones.entidades;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Basic;
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.xml.bind.annotation.XmlRootElement;
@@ -34,9 +40,13 @@ import javax.xml.bind.annotation.XmlRootElement;
 public class RequisicionesMov implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Basic(optional = false)
+    @Column(name = "idr")
+    private Integer idr;
     @Basic(optional = false)
     @Column(name = "transaccionId")
-    private Integer transaccionId;
+    private int transaccionId;
     @Basic(optional = false)
     @NotNull
     @Column(name = "productoId")
@@ -49,6 +59,38 @@ public class RequisicionesMov implements Serializable {
     @NotNull
     @Column(name = "cantidad")
     private float cantidad;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "entidadId")
+    private int entidadId;
+    @Basic(optional = false)
+    @NotNull
+    @Column(name = "entidadNombre")
+    private String entidadNombre;
+    
+    @JoinColumn(name = "transaccionId", referencedColumnName = "transaccionId", insertable = false, updatable = false)
+    @ManyToOne(optional = false)
+    private Requisiciones requisicion;
+    
+    @OneToOne(cascade = CascadeType.ALL, mappedBy = "requisicionesMov")
+    private entidades entidad;
+
+    public entidades getEntidad() {
+        return entidad;
+    }
+
+    public void setEntidad(entidades entidad) {
+        this.entidad = entidad;
+    }
+    
+
+    public Requisiciones getRequisicion() {
+        return requisicion;
+    }
+
+    public void setRequisicion(Requisiciones requisicion) {
+        this.requisicion = requisicion;
+    }
 
     public RequisicionesMov() {
     }
@@ -57,18 +99,28 @@ public class RequisicionesMov implements Serializable {
         this.transaccionId = transaccionId;
     }
 
-    public RequisicionesMov(Integer transaccionId, int productoId, int umId, float cantidad) {
+    public RequisicionesMov(Integer idr,int transaccionId, int productoId, int umId, float cantidad, int entidadId) {
+        this.idr = idr;
         this.transaccionId = transaccionId;
         this.productoId = productoId;
         this.umId = umId;
         this.cantidad = cantidad;
+        this.entidadId = entidadId;
+    }
+    
+    public Integer getIdr() {
+        return idr;
     }
 
-    public Integer getTransaccionId() {
+    public void setIdr(Integer idr) {
+        this.idr = idr;
+    }
+
+    public int getTransaccionId() {
         return transaccionId;
     }
 
-    public void setTransaccionId(Integer transaccionId) {
+    public void setTransaccionId(int transaccionId) {
         this.transaccionId = transaccionId;
     }
 
@@ -95,11 +147,27 @@ public class RequisicionesMov implements Serializable {
     public void setCantidad(float cantidad) {
         this.cantidad = cantidad;
     }
+    
+    public int getEntidadId(){
+        return entidadId;
+    }
+    
+    public void setEntidadId(int entidadId){
+        this.entidadId = entidadId;
+    }
+    
+    public String getEntidadNombre() {
+        return entidadNombre;
+    }
+
+    public void setEntidadNombre(String entidadNombre) {
+        this.entidadNombre = entidadNombre;
+    }
 
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (transaccionId != null ? transaccionId.hashCode() : 0);
+        hash += (idr != null ? idr.hashCode() : 0);
         return hash;
     }
 
@@ -110,7 +178,7 @@ public class RequisicionesMov implements Serializable {
             return false;
         }
         RequisicionesMov other = (RequisicionesMov) object;
-        if ((this.transaccionId == null && other.transaccionId != null) || (this.transaccionId != null && !this.transaccionId.equals(other.transaccionId))) {
+        if ((this.idr == null && other.idr != null) || (this.idr != null && !this.idr.equals(other.idr))) {
             return false;
         }
         return true;
