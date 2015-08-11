@@ -29,12 +29,14 @@
                     </p:panelGrid>
                     <p:panel header="#{bundle.ListRequisicionesTitleMov}">
                         <p:dataTable id="detalleRequisicionesMov" value="#{requisicionesController.itemsMov}" var="item" rowKey="#{item.transaccionId}">
-                            <p:column>
-                                <f:facet name="header">
-                                    <h:outputText value="#{bundle.ListRequisicionesMovTitle_transaccionId}"/>
-                                </f:facet>
-                                <h:outputText value="#{item.transaccionId}"/>
-                            </p:column>
+                            <ui:remove>
+                                <p:column>
+                                    <f:facet name="header">
+                                        <h:outputText value="#{bundle.ListRequisicionesMovTitle_transaccionId}"/>
+                                    </f:facet>
+                                    <h:outputText value="#{item.transaccionId}"/>
+                                </p:column>
+                            </ui:remove>
                             <p:column>
                                 <f:facet name="header">
                                     <h:outputText value="#{bundle.ListRequisicionesMovTitle_productoId}"/>

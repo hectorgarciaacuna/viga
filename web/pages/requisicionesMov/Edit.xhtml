@@ -12,8 +12,10 @@
             <h:form id="RequisicionesMovEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="4" rendered="#{requisicionesMovController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditRequisicionesMovLabel_transaccionId}" for="transaccionId" />
-                        <p:inputText id="transaccionId" value="#{requisicionesMovController.selected.transaccionId}" title="#{bundle.EditRequisicionesMovTitle_transaccionId}" required="true" requiredMessage="#{bundle.EditRequisicionesMovRequiredMessage_transaccionId}"/>
+                        <ui:remove>
+                            <p:outputLabel value="#{bundle.EditRequisicionesMovLabel_transaccionId}" for="transaccionId" />
+                            <p:inputText id="transaccionId" value="#{requisicionesMovController.selected.transaccionId}" title="#{bundle.EditRequisicionesMovTitle_transaccionId}" required="true" requiredMessage="#{bundle.EditRequisicionesMovRequiredMessage_transaccionId}"/>
+                        </ui:remove>
                         <p:outputLabel value="#{bundle.EditRequisicionesMovLabel_productoId}" for="productoId" />
                         <p:inputText id="productoId" value="#{requisicionesMovController.selected.productoId}" title="#{bundle.EditRequisicionesMovTitle_productoId}" required="true" requiredMessage="#{bundle.EditRequisicionesMovRequiredMessage_productoId}"/>
                         <p:outputLabel value="#{bundle.EditRequisicionesMovLabel_umId}" for="umId" />

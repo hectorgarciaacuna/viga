@@ -27,13 +27,14 @@
 
                         <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
                         <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
-
+                        <ui:remove>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_productoId}"/>
                             </f:facet>
                             <h:outputText value="#{item.productoId}"/>
                         </p:column>
+                        </ui:remove>
                         <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListProductosTitle_codigo}"/>

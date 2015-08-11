@@ -12,8 +12,10 @@
             <h:form id="ProductosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{productosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewProductosLabel_productoId}"/>
-                        <h:outputText value="#{productosController.selected.productoId}" title="#{bundle.ViewProductosTitle_productoId}"/>
+                        <ui:remove>
+                            <h:outputText value="#{bundle.ViewProductosLabel_productoId}"/>
+                            <h:outputText value="#{productosController.selected.productoId}" title="#{bundle.ViewProductosTitle_productoId}"/>
+                        </ui:remove>
                         <h:outputText value="#{bundle.ViewProductosLabel_codigo}"/>
                         <h:outputText value="#{productosController.selected.codigo}" title="#{bundle.ViewProductosTitle_codigo}"/>
                         <h:outputText value="#{bundle.ViewProductosLabel_descripcion}"/>

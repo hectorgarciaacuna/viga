@@ -12,8 +12,10 @@
             <h:form id="ProyectoCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{proyectoController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateProyectoLabel_proyectoId}" for="proyectoId" />
-                        <p:inputText id="proyectoId" value="#{proyectoController.selected.proyectoId}" title="#{bundle.CreateProyectoTitle_proyectoId}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_proyectoId}"/>
+                        <ui:remove>
+                            <p:outputLabel value="#{bundle.CreateProyectoLabel_proyectoId}" for="proyectoId" />
+                            <p:inputText id="proyectoId" value="#{proyectoController.selected.proyectoId}" title="#{bundle.CreateProyectoTitle_proyectoId}" required="true" requiredMessage="#{bundle.CreateProyectoRequiredMessage_proyectoId}"/>
+                        </ui:remove>    
                         <p:outputLabel value="#{bundle.CreateProyectoLabel_codigoPostal}" for="codigoPostal" />
                         <p:inputText id="codigoPostal" value="#{proyectoController.selected.codigoPostal}" title="#{bundle.CreateProyectoTitle_codigoPostal}" />
                         <p:outputLabel value="#{bundle.CreateProyectoLabel_codigoProyecto}" for="codigoProyecto" />
@@ -28,14 +30,16 @@
                         <p:inputText id="delegacion" value="#{proyectoController.selected.delegacion}" title="#{bundle.CreateProyectoTitle_delegacion}" />
                         <p:outputLabel value="#{bundle.CreateProyectoLabel_estado}" for="estado" />
                         <p:inputText id="estado" value="#{proyectoController.selected.estado}" title="#{bundle.CreateProyectoTitle_estado}" />
-                        <p:outputLabel value="#{bundle.CreateProyectoLabel_tipoProyecto}" for="tipoProyecto" />
-                        <p:inputText id="tipoProyecto" value="#{proyectoController.selected.tipoProyecto}" title="#{bundle.CreateProyectoTitle_tipoProyecto}" />
-                        <p:outputLabel value="#{bundle.CreateProyectoLabel_fechaInicio}" for="fechaInicio" />
-                        <p:calendar id="fechaInicio" pattern="MM/dd/yyyy HH:mm:ss" value="#{proyectoController.selected.fechaInicio}" title="#{bundle.EditProyectoTitle_fechaInicio}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateProyectoLabel_fechaFin}" for="fechaFin" />
-                        <p:calendar id="fechaFin" pattern="MM/dd/yyyy HH:mm:ss" value="#{proyectoController.selected.fechaFin}" title="#{bundle.EditProyectoTitle_fechaFin}"  showOn="button"/>
-                        <p:outputLabel value="#{bundle.CreateProyectoLabel_usuarioId}" for="usuarioId" />
-                        <p:inputText id="usuarioId" value="#{proyectoController.selected.usuarioId}" title="#{bundle.CreateProyectoTitle_usuarioId}" />
+                        <ui:remove>
+                            <p:outputLabel value="#{bundle.CreateProyectoLabel_tipoProyecto}" for="tipoProyecto" />
+                            <p:inputText id="tipoProyecto" value="#{proyectoController.selected.tipoProyecto}" title="#{bundle.CreateProyectoTitle_tipoProyecto}" />
+                            <p:outputLabel value="#{bundle.CreateProyectoLabel_fechaInicio}" for="fechaInicio" />
+                            <p:calendar id="fechaInicio" pattern="MM/dd/yyyy HH:mm:ss" value="#{proyectoController.selected.fechaInicio}" title="#{bundle.EditProyectoTitle_fechaInicio}"  showOn="button"/>
+                            <p:outputLabel value="#{bundle.CreateProyectoLabel_fechaFin}" for="fechaFin" />
+                            <p:calendar id="fechaFin" pattern="MM/dd/yyyy HH:mm:ss" value="#{proyectoController.selected.fechaFin}" title="#{bundle.EditProyectoTitle_fechaFin}"  showOn="button"/>
+                            <p:outputLabel value="#{bundle.CreateProyectoLabel_usuarioId}" for="usuarioId" />
+                            <p:inputText id="usuarioId" value="#{proyectoController.selected.usuarioId}" title="#{bundle.CreateProyectoTitle_usuarioId}" />
+                        </ui:remove>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{proyectoController.create}" value="#{bundle.Save}" update="display,:ProyectoListForm:datalist,:growl" oncomplete="handleSubmit(args,'ProyectoCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="ProyectoCreateDialog.hide()"/>

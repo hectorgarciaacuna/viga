@@ -12,8 +12,10 @@
             <h:form id="RequisicionesViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{requisicionesController.selected != null}">
-                        <h:outputText value="#{bundle.ViewRequisicionesLabel_transaccionId}"/>
-                        <h:outputText value="#{requisicionesController.selected.transaccionId}" title="#{bundle.ViewRequisicionesTitle_transaccionId}"/>
+                        <ui:remove>
+                            <h:outputText value="#{bundle.ViewRequisicionesLabel_transaccionId}"/>
+                            <h:outputText value="#{requisicionesController.selected.transaccionId}" title="#{bundle.ViewRequisicionesTitle_transaccionId}"/>
+                        </ui:remove>
                         <h:outputText value="#{bundle.ViewRequisicionesLabel_folio}"/>
                         <h:outputText value="#{requisicionesController.selected.folio}" title="#{bundle.ViewRequisicionesTitle_folio}"/>
                         <h:outputText value="#{bundle.ViewRequisicionesLabel_fecha}"/>

@@ -12,8 +12,10 @@
             <h:form id="UsuariosViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{usuariosController.selected != null}">
-                        <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioId}"/>
-                        <h:outputText value="#{usuariosController.selected.usuarioId}" title="#{bundle.ViewUsuariosTitle_usuarioId}"/>
+                        <ui:remove>
+                            <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioId}"/>
+                            <h:outputText value="#{usuariosController.selected.usuarioId}" title="#{bundle.ViewUsuariosTitle_usuarioId}"/>
+                        </ui:remove>
                         <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioNombre}"/>
                         <h:outputText value="#{usuariosController.selected.usuarioNombre}" title="#{bundle.ViewUsuariosTitle_usuarioNombre}"/>
                         <h:outputText value="#{bundle.ViewUsuariosLabel_usuarioCorreo}"/>
